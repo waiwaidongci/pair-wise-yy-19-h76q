@@ -13,7 +13,10 @@
         <p>Petrographic Slide Index</p>
         <h1>岩芯薄片显微照片索引台</h1>
       </div>
-      <button id="exportBtn" type="button">导出观察清单</button>
+      <div class="mast-actions">
+        <button id="rosterBtn" type="button" class="btn-secondary">矿物名册</button>
+        <button id="exportBtn" type="button">导出观察清单</button>
+      </div>
     </header>
 
     <section class="layout">
@@ -32,7 +35,13 @@
             </select>
           </label>
         </div>
-        <label>主要矿物<input name="minerals" placeholder="石英、斜长石、黑云母"></label>
+        <label class="mineral-label">主要矿物
+          <div class="mineral-picker" id="mineralPicker">
+            <div class="mineral-chips" id="mineralChips"></div>
+            <input id="mineralInput" placeholder="选择标准名，或输入现场写法" autocomplete="off">
+            <div class="suggest" id="mineralSuggest" hidden></div>
+          </div>
+        </label>
         <label>颗粒结构<input name="texture" placeholder="半自形粒状、碎裂结构"></label>
         <label>老师批注<textarea name="comment" rows="4" placeholder="记录鉴定依据或疑点"></textarea></label>
         <button type="submit">保存样本</button>
@@ -40,7 +49,10 @@
 
       <section class="board">
         <div class="filters">
-          <input id="mineralFilter" placeholder="按矿物筛选">
+          <div class="multiselect" id="mineralFilter">
+            <button type="button" class="multiselect-btn" id="mineralFilterBtn">按矿物筛选（全部命中）</button>
+            <div class="multiselect-pop" id="mineralFilterPop" hidden></div>
+          </div>
           <select id="polarFilter">
             <option value="">全部偏光</option>
             <option>单偏光</option>
@@ -57,6 +69,20 @@
       </aside>
     </section>
   </main>
+
+  <dialog id="rosterDialog" class="roster-dialog">
+    <div class="dialog-head">
+      <h2>组内矿物名册</h2>
+      <button type="button" id="rosterCloseBtn" class="btn-secondary">关闭</button>
+    </div>
+    <p class="dialog-hint">录入与筛选都使用标准名；现场写法（如 Qz、石英颗粒）登记为同义词后随标准名归并。合并标准名时旧样本保留原写法，筛选与导出自动归到新标准名。</p>
+    <form id="rosterAddForm" class="roster-add">
+      <input id="rosterAddInput" placeholder="新增标准矿物名，如：石榴子石">
+      <button type="submit">添加标准名</button>
+    </form>
+    <div id="rosterList" class="roster-list"></div>
+  </dialog>
+
   <script src="./app.js"></script>
 </body>
 </html>
