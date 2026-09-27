@@ -81,9 +81,16 @@ button {
   align-items: start;
 }
 
+.side {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
 .editor,
 .board,
-.compare {
+.compare,
+.registry {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgb(251 253 249 / 92%);
@@ -91,7 +98,8 @@ button {
 }
 
 .editor,
-.compare {
+.compare,
+.registry {
   padding: 16px;
 }
 
@@ -116,6 +124,79 @@ textarea {
 
 textarea {
   resize: vertical;
+}
+
+select[multiple] {
+  min-height: 132px;
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.chip {
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #e8f0eb;
+  color: var(--ink);
+  padding: 0 12px;
+}
+
+.chip.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.mineral-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mineral-row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 8px 10px;
+}
+
+.mineral-row h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.mineral-row p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.tag {
+  display: inline-block;
+  margin: 2px 4px 0 0;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #e8f0eb;
+}
+
+.registry button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.canonical {
+  color: var(--accent);
 }
 
 .pair {

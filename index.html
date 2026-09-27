@@ -17,30 +17,60 @@
     </header>
 
     <section class="layout">
-      <form id="sampleForm" class="editor">
-        <h2>样本录入</h2>
-        <label>显微照片<input id="photoInput" type="file" accept="image/*"></label>
-        <label>样本编号<input name="code" required placeholder="BX-17-03"></label>
-        <label>采样地点<input name="location" placeholder="剖面东侧第二层"></label>
-        <div class="pair">
-          <label>放大倍数<input name="magnification" placeholder="40x"></label>
-          <label>偏光类型
-            <select name="polarization">
-              <option>单偏光</option>
-              <option>正交偏光</option>
-              <option>反射光</option>
-            </select>
+      <div class="side">
+        <form id="sampleForm" class="editor">
+          <h2>样本录入</h2>
+          <label>显微照片<input id="photoInput" type="file" accept="image/*"></label>
+          <label>样本编号<input name="code" required placeholder="BX-17-03"></label>
+          <label>采样地点<input name="location" placeholder="剖面东侧第二层"></label>
+          <div class="pair">
+            <label>放大倍数<input name="magnification" placeholder="40x"></label>
+            <label>偏光类型
+              <select name="polarization">
+                <option>单偏光</option>
+                <option>正交偏光</option>
+                <option>反射光</option>
+              </select>
+            </label>
+          </div>
+          <label>主要矿物（从名册选择，可多选）
+            <select id="mineralSelect" name="mineralIds" multiple></select>
           </label>
-        </div>
-        <label>主要矿物<input name="minerals" placeholder="石英、斜长石、黑云母"></label>
-        <label>颗粒结构<input name="texture" placeholder="半自形粒状、碎裂结构"></label>
-        <label>老师批注<textarea name="comment" rows="4" placeholder="记录鉴定依据或疑点"></textarea></label>
-        <button type="submit">保存样本</button>
-      </form>
+          <p class="hint">名册里没有的名称，先在下方矿物名册登记标准名或同义词。</p>
+          <label>颗粒结构<input name="texture" placeholder="半自形粒状、碎裂结构"></label>
+          <label>老师批注<textarea name="comment" rows="4" placeholder="记录鉴定依据或疑点"></textarea></label>
+          <button type="submit">保存样本</button>
+        </form>
+
+        <section class="registry">
+          <h2>矿物名册</h2>
+          <div id="mineralList" class="mineral-list"></div>
+          <label>新增标准名
+            <input id="newMineralName" placeholder="例如：石英">
+          </label>
+          <button id="addMineralBtn" type="button">添加标准名</button>
+          <label>现场写法归属的标准名
+            <select id="synonymTarget"></select>
+          </label>
+          <label>现场写法
+            <input id="newSynonym" placeholder="例如：Qz、石英颗粒">
+          </label>
+          <button id="addSynonymBtn" type="button">登记为同义词</button>
+          <div class="pair">
+            <label>合并<select id="mergeSource"></select></label>
+            <label>并入到<select id="mergeTarget"></select></label>
+          </div>
+          <button id="mergeBtn" type="button">合并标准名</button>
+          <p class="hint">合并后历史样本即时归入目标名称，卡片仍显示原写法，对比列表不受影响。</p>
+        </section>
+      </div>
 
       <section class="board">
         <div class="filters">
-          <input id="mineralFilter" placeholder="按矿物筛选">
+          <div>
+            <div id="mineralFilter" class="chip-row"></div>
+            <p class="hint">按矿物筛选：可多选，选中的矿物全部命中才显示</p>
+          </div>
           <select id="polarFilter">
             <option value="">全部偏光</option>
             <option>单偏光</option>
